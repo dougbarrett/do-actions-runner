@@ -1,4 +1,4 @@
-FROM docker:dind  # Base image is now the Docker-in-Docker image
+FROM docker:dind
 
 ENV TZ=America/Los_Angeles
 
