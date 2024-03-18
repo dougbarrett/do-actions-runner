@@ -1,19 +1,8 @@
-FROM ubuntu
+FROM docker:dind  # Base image is now the Docker-in-Docker image
 
 ENV TZ=America/Los_Angeles
 
 RUN apt-get update && apt-get install -y tzdata
-
-# Install Docker
-RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
-    && apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
-
 
 RUN useradd -m actions
 RUN apt-get -y update && apt-get install -y \
@@ -44,7 +33,7 @@ RUN curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-
 
 WORKDIR /home/actions/actions-runner
 
-USER root
+USER actions
 COPY --chown=actions:actions entrypoint.sh .
 RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
