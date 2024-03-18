@@ -1,6 +1,7 @@
 FROM ubuntu
 
-ENV TZ=America/Los_Angeles 
+ENV TZ=America/Los_Angeles
+date
 
 RUN useradd -m actions
 RUN apt-get -y update && apt-get install -y \
