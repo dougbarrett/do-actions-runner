@@ -3,6 +3,8 @@ FROM ubuntu
 RUN echo "Timezone Fix"  # Or any other arbitrary command
 ENV TZ=America/Los_Angeles
 
+RUN apt-get update && apt-get install -y tzdata
+
 RUN useradd -m actions
 RUN apt-get -y update && apt-get install -y \
     apt-transport-https ca-certificates curl jq software-properties-common \
