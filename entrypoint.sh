@@ -34,10 +34,6 @@ cleanup() {
 
 trap 'cleanup' SIGTERM
 
-
-# Start the Docker service
-service docker start
-
 ./run.sh "$@" &
 
 wait $!
