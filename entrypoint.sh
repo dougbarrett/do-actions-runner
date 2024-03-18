@@ -36,7 +36,7 @@ trap 'cleanup' SIGTERM
 
 
 # Start the Docker service
-sudo service docker start
+service docker start
 
 ./run.sh "$@" &
 
