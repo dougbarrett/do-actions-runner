@@ -1,7 +1,7 @@
 FROM ubuntu
 
+RUN echo "Timezone Fix"  # Or any other arbitrary command
 ENV TZ=America/Los_Angeles
-date
 
 RUN useradd -m actions
 RUN apt-get -y update && apt-get install -y \
